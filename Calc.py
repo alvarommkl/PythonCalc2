@@ -7,7 +7,7 @@ hits=0
 fails=0
 
 def multiplicar(num1, num2):
-    
+
     return num1*num2
 
 def ChooseNumber():
@@ -17,17 +17,16 @@ def ChooseNumber():
         try:
             
             num=[]
-            cont=0
+            # cont=0
             cadena=input("Tablas a practicar ")
             cadena = cadena.split(" ")
 
-
-            for i in cadena:
-                cont
-                hola = cadena[cont]
-                num.append(int(hola))
+            for i in range(len(cadena)):
+                # cont
+                cad_mul = cadena[i]
+                num.append(int(cad_mul))
                 
-                cont=cont + 1
+                # cont=cont + 1
                 
             return num
         except:
@@ -39,8 +38,8 @@ def ChooseNumber():
 
 def menu():
 
-    ch=0
-    while ch != 1 and ch != 2:
+    choice=0
+    while choice != 1 and choice != 2:
         os.system('cls')
         print("********************************************")
         print("*   Seleccione el modo que desee repasar   *")
@@ -52,34 +51,39 @@ def menu():
         print("*     5. Salir                             *")
         print("********************************************")
         try:
-            ch = int(input("Seleccione una opcion "))
-            if  ch != 1 and ch != 2 and ch !=3 and ch !=4 and ch != 5:
+            choice = int(input("Seleccione una opcion "))
+            if  choice != 1 and choice != 2 and choice !=3 and choice !=4 and choice != 5:
                 print("Introduce un numero valido ")
                 input("Pulse una tecla para continuar")
             else:
-                return ch
+                return choice
         except:
             return 0
 
 
-
-def ChooseMul(op, num1):
-    num2 = []
+def FillNumber(option):
+    mulTable2 = []
 
     for i in range(1,11):
-        if op==1:
-            num2.append(i)
+        if option==1:
+            mulTable2.append(i)
         else:
-            num2.append(rd.randint(1,10))
-    
-    for j in num1:
-        for i in num2:
-            sol = multiplicar(j,i)
+            mulTable2.append(rd.randint(1,10))
+            if (i != 1 and mulTable2[i-1]==mulTable2[i-2]  ):
+                mulTable2[i-1]=rd.randint(1,10)
+    return mulTable2
+
+
+def ChooseMul(option, mulTable1):
+    for mul1 in mulTable1:
+        mulTable2 = FillNumber(option)
+        for mul2 in mulTable2:
+            solution = multiplicar(mul1,mul2)
             try:
                 
-                comp(sol,int(input(f"{j} x {i} = ")))
+                comp(solution,int(input(f"{mul1} x {mul2} = ")))
             except:
-                comp(sol,0)
+                comp(solution,0)
 
     # except:
     #     res=0
@@ -95,9 +99,9 @@ def PlayAgain():
         return playAgain
 
 
-def comp(sol, res):
+def comp(solution, res):
 
-    if sol == res:
+    if solution == res:
         print("Muy bien \n")
         global hits 
         hits += 1
@@ -110,21 +114,21 @@ def comp(sol, res):
 
 
 #Main
-flg=True
-plg=False
-while flg:
-    if plg == False:
-        op=menu()
-    if op == 1 or op ==2:
-        num=ChooseNumber()
-        ChooseMul(op,num)
+comprobation=True
+playAgain=False
+while comprobation:
+    if playAgain == False:
+        option=menu()
+    if option == 1 or option ==2:
+        mulTable=ChooseNumber()
+        ChooseMul(option,mulTable)
         print(f"Has tenido {hits} aciertos y {fails} fallos")
-        plg=PlayAgain()
-    elif op==3:
+        playAgain=PlayAgain()
+    elif option==3:
         print("Aqui irian los resultados")
         input()
-    elif op==4:
+    elif option==4:
         print("Aqui se resetearian las puntuaciones")
         input()
-    elif op==5:
-        flg = False
+    elif option==5:
+        comprobation = False
