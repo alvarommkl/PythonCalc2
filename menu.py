@@ -2,6 +2,7 @@ import os
 
 
 def menu():
+    choiceString = ['Multiplicacion Normal','Multiplicacion Random','Mostrar Puntuacion','Resetear Puntuacion','Salir']
     while True:
         os.system("cls")
         print("********************************************")
@@ -19,7 +20,7 @@ def menu():
                 print("Introduce un numero valido ")
                 input("Pulse una tecla para continuar")
             else:
-                return choice
+                return choiceString[choice-1]
         except:
             return 0
 

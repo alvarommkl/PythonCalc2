@@ -37,7 +37,7 @@ def FillNumber(option):
     mulTable2 = []
 
     for i in range(1, 11):
-        if option == 1:
+        if option == 'Multiplicacion Normal':
             mulTable2.append(i)
         else:
             mulTable2.append(rd.randint(1, 10))

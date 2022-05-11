@@ -41,29 +41,29 @@ while comprobation:
 
 
     #Opcion 1 = Multiplicacion en serie, Opcion 2 = Multiplicacion random
-    if option == 1 or option == 2:
+    if option=='Multiplicacion Normal' or option == 'Multiplicacion Random':
         multTable = ChooseMultTable()
         correctAnswers , failedAnswers, score = StartTest(option, multTable,score)
         print(f"Has tenido {correctAnswers} aciertos y {failedAnswers} fallos")
-        input("n\Pulsa intro para continuar")
+        input("\nPulsa intro para continuar ")
         playAgain = PlayAgain()
         
         
 
     #Opcion 3 = Muestra resultados
-    elif option == 3:
+    elif option == 'Mostrar Puntuacion':
         eval(score)
         input("\nPulsa una tecla para continuar")
 
 
     #Opcion 4 = Resetea resultados
-    elif option == 4:
+    elif option == 'Resetear Puntuacion':
         score=ResetScore(score)
         input("\nPulsa una tecla para continuar")
 
 
     #Opcion 5 = Salir programa
-    elif option == 5:
+    elif option == 'Salir':
         SaveScore(score)
         comprobation = False
 
